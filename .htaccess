@@ -1,0 +1,35 @@
+#-----------------------------------------
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-l
+RewriteRule ^(.*)$ index.php/$1 [L]
+#-----------------------------------------
+
+
+
+
+<IfModule mod_expires.c>
+
+############################################
+## Add default Expires header
+## http://developer.yahoo.com/performance/rules.html#expires
+
+    ExpiresDefault "access plus 1 year"
+
+</IfModule>
+
+<IfModule mod_headers.c>
+<FilesMatch "\.(css|js|jpe?g|png|gif)$">
+Header set Cache-Control "max-age=5259487, public"
+</FilesMatch>
+</IfModule>
+<IfModule mod_expires.c>
+ExpiresActive On
+ExpiresByType text/css M5259487
+ExpiresByType text/javascript M5259487
+ExpiresByType application/x-javascript M5259487
+ExpiresByType image/jpeg M5259487
+ExpiresByType image/png M5259487
+ExpiresByType image/gif M5259487
+</IfModule>
